@@ -1,0 +1,132 @@
+/*
+ * Class: CMSC203 
+ * Instructor: Khandan Monshi
+ * Description: User picks one color out of 7 and tries to guess correctly. Program tallies up how many was correct. 
+ * Due: 01/29/2024
+ * Platform/compiler: Eclipse
+ * I pledge that I have completed the programming assignment 
+ * independently. I have not copied the code from a student or any source. I have not given my code to any student.
+ * Print your Name here: Kyle Yee
+*/
+package assignments;
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class ESPGame 
+{
+	public static void main(String[] arg)
+	{
+		//initialized required java constants
+		final String colorRed = "Red";
+		final String colorOrange = "Orange";
+		final String colorYellow = "Yellow";
+		final String colorGreen = "Green";
+		final String colorBlue = "Blue";
+		final String colorPurple = "Purple";
+		final String colorBlack = "Black";
+		
+		String winningColor = "";
+		int correctGuess = 0;
+		Scanner keyboard = new Scanner(System.in);
+		
+		//starting menu
+		System.out.print("Enter your name: ");
+		String studentName = keyboard.nextLine();
+		
+		System.out.print("Enter your MC M#: ");
+		String mcNumber = keyboard.nextLine();
+		
+		System.out.print("Describe yourself: ");
+		String userDescribe = keyboard.nextLine();
+		
+		System.out.print("Due Date (MM/DD/YY): ");
+		String dueDate = keyboard.nextLine();
+		
+		System.out.print("CMSC203 Assignment1: Test your ESP skills!\n");
+		
+		//number being corresponded to each color. Random number then generated for each round
+		for(int count = 1; count < 12; count++)
+		{
+			boolean approvedColor = false;
+			Random random = new Random();
+			int randomColor = random.nextInt(7)+1;
+			
+			switch(randomColor)
+			{
+				case 1:
+					winningColor = colorRed;
+					break;
+					
+				case 2:
+					winningColor = colorOrange;
+					break;
+					
+				case 3:
+					winningColor = colorYellow;
+					break;
+					
+				case 4:
+					winningColor = colorGreen;
+					break;
+					
+				case 5:
+					winningColor = colorBlue;
+					break;
+					
+				case 6:
+					winningColor = colorPurple;
+					break;
+					
+				case 7:
+					winningColor = colorBlack;
+					break;
+			}
+			
+			System.out.print("Round " + count);
+			System.out.print("\n\nI am thinking of a color.\n"
+			        + "Is it Red, Orange, Yellow, Green, Blue, Purple, or Black?\n"
+			        + "Enter your guess:\n");
+			String userChoice = keyboard.nextLine();
+			
+			while(approvedColor == false)
+			{
+				if(userChoice.equalsIgnoreCase(colorRed) 
+				|| userChoice.equalsIgnoreCase(colorOrange) 
+				|| userChoice.equalsIgnoreCase(colorYellow) 
+				|| userChoice.equalsIgnoreCase(colorGreen) 
+				|| userChoice.equalsIgnoreCase(colorBlue) 
+				|| userChoice.equalsIgnoreCase(colorPurple) 
+				|| userChoice.equalsIgnoreCase(colorBlack))
+					
+				{
+					approvedColor = true;
+					System.out.println("\nI was thinking of " + (winningColor) + "." );
+					
+					if(userChoice.equalsIgnoreCase(winningColor))
+					
+					correctGuess++;	
+				}
+				
+				else
+					
+				{
+					System.out.println("You entered incorrect color. Is it Red, Orange, Yellow, Green, Blue, Purple, or Black?\n" 
+				    + "Enter your guess again:");
+					String user2ndChoice = keyboard.nextLine();
+					userChoice = user2ndChoice;
+				}
+				
+			}	
+		}
+		
+		//exit menu
+		System.out.println("\nGame Over\n");
+		
+		System.out.println("You guessed " + correctGuess + " out of 11 colors correctly.");
+		System.out.println("Student Name: " + studentName);
+		System.out.println("MC M#: " + mcNumber);
+		System.out.println("User Description: " + userDescribe);
+		System.out.println("Due Date: " + dueDate);
+	}
+}
